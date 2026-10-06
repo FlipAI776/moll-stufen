@@ -1,0 +1,122 @@
+/* ------------------------------------------------------------
+   Farben: oben für helle, darunter für dunkle Darstellung.
+   Hier lassen sich die Farben der App ändern.
+   ------------------------------------------------------------ */
+:root {
+  --hintergrund: #fbfaf7;
+  --flaeche: #ffffff;
+  --text: #1b1b1f;
+  --text-leise: #4a4a55;
+  --linie: #b9b9c4;
+  --akzent: #1d3f8f;        /* gewählte Tonart, Fokusrahmen */
+  --akzent-text: #ffffff;
+  --moll: #e4ebfb;          /* Hintergrund für Moll-Dreiklänge */
+  --dur: #fdeed2;           /* Hintergrund für Dur-Dreiklänge */
+  --schrift: 100%;          /* wird von den Tasten A− / A+ geändert */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --hintergrund: #15161a;
+    --flaeche: #1f2127;
+    --text: #f1f1f4;
+    --text-leise: #c3c3cf;
+    --linie: #5c5e6b;
+    --akzent: #a9c1ff;
+    --akzent-text: #10131c;
+    --moll: #25304d;
+    --dur: #4a3a1c;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: var(--schrift); }
+
+body {
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 46rem;
+  background: var(--hintergrund);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+header { position: relative; padding-right: 7rem; }
+h1 { margin: 0.25rem 0 0; font-size: 1.9rem; line-height: 1.2; }
+h2 { margin: 2rem 0 0.75rem; font-size: 1.25rem; }
+.untertitel { margin: 0.25rem 0 0; color: var(--text-leise); }
+
+/* Sichtbarer Fokus für die Bedienung mit der Tastatur */
+button:focus-visible {
+  outline: 3px solid var(--akzent);
+  outline-offset: 3px;
+}
+
+button {
+  font: inherit;
+  color: var(--text);
+  background: var(--flaeche);
+  border: 2px solid var(--linie);
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+/* Schriftgröße */
+.schrift { position: absolute; top: 0.25rem; right: 0; display: flex; gap: 0.4rem; }
+.schrift button { min-width: 3rem; min-height: 3rem; font-weight: 700; }
+
+/* Tonart-Schaltflächen */
+.tonart-wahl {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.2rem, 1fr));
+  gap: 0.6rem;
+}
+.tonart-wahl button {
+  min-height: 4rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+.tonart-wahl .name { display: block; font-weight: 700; font-size: 1.15rem; }
+.tonart-wahl .vz { display: block; font-size: 0.9rem; color: var(--text-leise); }
+.tonart-wahl button:hover { border-color: var(--akzent); }
+.tonart-wahl button[aria-pressed="true"] {
+  background: var(--akzent);
+  border-color: var(--akzent);
+  color: var(--akzent-text);
+}
+.tonart-wahl button[aria-pressed="true"] .vz { color: var(--akzent-text); }
+
+/* Ergebnis */
+.hinweis { color: var(--text-leise); }
+.leiter { margin: 0 0 1rem; }
+.leiter strong { letter-spacing: 0.04em; }
+
+.stufen { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.stufen li {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: 0.25rem 1rem;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--linie);
+  border-radius: 0.6rem;
+}
+.stufen li.moll { background: var(--moll); }
+.stufen li.dur  { background: var(--dur); }
+.stufen .nr { font-weight: 700; }
+.stufen .ziffer { display: block; font-weight: 400; color: var(--text-leise); font-size: 0.95rem; }
+.stufen .akkord { font-size: 1.35rem; font-weight: 700; }
+.stufen .toene { display: block; color: var(--text-leise); }
+
+footer { margin-top: 2.5rem; color: var(--text-leise); font-size: 0.95rem; }
+
+/* Schmale Bildschirme (ab 320 px) */
+@media (max-width: 26rem) {
+  header { padding-right: 0; }
+  .schrift { position: static; margin-top: 0.75rem; }
+  .tonart-wahl { grid-template-columns: repeat(2, 1fr); }
+  .stufen li { grid-template-columns: 1fr; }
+}

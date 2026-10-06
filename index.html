@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moll-Stufen – Dreiklänge im natürlichen Moll</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Moll-Stufen</h1>
+    <p class="untertitel">Dreiklänge auf der 1., 3., 5. und 7. Stufe im natürlichen Moll</p>
+
+    <!-- Schriftgröße verstellen -->
+    <div class="schrift" role="group" aria-label="Schriftgröße">
+      <button type="button" id="schrift-kleiner" aria-label="Schrift kleiner">A−</button>
+      <button type="button" id="schrift-groesser" aria-label="Schrift größer">A+</button>
+    </div>
+  </header>
+
+  <main>
+    <section aria-labelledby="wahl-titel">
+      <h2 id="wahl-titel">1. Wähle eine Moll-Tonart</h2>
+      <div id="tonart-wahl" class="tonart-wahl" role="group" aria-labelledby="wahl-titel">
+        <!-- Die Schaltflächen werden aus data/tonarten.js erzeugt -->
+      </div>
+    </section>
+
+    <section aria-labelledby="ergebnis-titel">
+      <h2 id="ergebnis-titel">2. Die Dreiklänge</h2>
+      <!-- aria-live: Screenreader lesen das Ergebnis nach der Auswahl vor -->
+      <div id="ergebnis" aria-live="polite">
+        <p class="hinweis">Noch keine Tonart gewählt. Wähle oben eine Tonart aus.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Diese Seite speichert nichts und sendet nichts.</p>
+  </footer>
+
+  <noscript><p class="hinweis">Diese Seite braucht JavaScript. Bitte im Browser einschalten.</p></noscript>
+
+  <script src="data/tonarten.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
